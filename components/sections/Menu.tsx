@@ -1,130 +1,165 @@
-import { siteConfig } from "@/config/site";
+"use client";
+
+import { useMemo, useState } from "react";
+import {
+  formatPrice,
+  restaurantConfig,
+  type MenuTag,
+} from "@/data/restaurant.config";
 import Reveal from "@/components/Reveal";
+import RestaurantImage from "@/components/RestaurantImage";
 
-/**
- * THE MENU.
- *
- * Rendered as real, semantic, crawlable HTML — never a PDF and never an image
- * of a printed menu. This is deliberate and it is the single most important
- * decision on a restaurant website:
- *
- *   • Google can read it, so you rank for "<dish> in <city>" searches.
- *   • It is legible and zoomable on a phone, where most menus are opened.
- *   • Screen readers can read it, which a picture of a menu can never do.
- *   • It pairs with the Menu structured data emitted in app/layout.tsx.
- */
-
-const TAG_STYLES: Record<string, string> = {
-  v: "bg-emerald-100 text-emerald-800 dark:bg-emerald-500/15 dark:text-emerald-300",
-  vg: "bg-lime-100 text-lime-800 dark:bg-lime-500/15 dark:text-lime-300",
-  gf: "bg-sky-100 text-sky-800 dark:bg-sky-500/15 dark:text-sky-300",
-  popular:
-    "bg-ember-100 text-ember-600 dark:bg-ember-500/20 dark:text-ember-200",
-  new: "bg-amber-100 text-amber-800 dark:bg-amber-500/15 dark:text-amber-300",
+const TAG_STYLES: Record<MenuTag, string> = {
+  v: "bg-emerald-100 text-emerald-800",
+  vg: "bg-lime-100 text-lime-800",
+  gf: "bg-sky-100 text-sky-800",
+  popular: "bg-amber-100 text-amber-900",
+  signature: "bg-red-100 text-red-900",
+  new: "bg-violet-100 text-violet-900",
 };
 
 export default function Menu() {
+  const { menu, dietaryLegend, takeout } = restaurantConfig;
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const allItems = useMemo(
+    () =>
+      menu.categories.flatMap((category) =>
+        category.items.map((item) => ({
+          ...item,
+          category: category.label,
+          categoryId: category.id,
+        })),
+      ),
+    [menu.categories],
+  );
+
+  const items =
+    activeCategory === "all"
+      ? allItems
+      : allItems.filter((item) => item.categoryId === activeCategory);
+
+  const filters = [
+    { id: "all", label: "All" },
+    ...menu.categories.map(({ id, label }) => ({ id, label })),
+  ];
+
   return (
-    <section id="menu" className="paper py-20 sm:py-28">
-      <div className="mx-auto max-w-4xl px-5">
+    <section id="menu" className="paper relative py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5">
         <Reveal>
-          <div className="text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ember-600 dark:text-ember-400">
-              The menu
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-5xl">
-              What we&rsquo;re cooking
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="section-kicker">{menu.eyebrow}</span>
+            <h2 className="mt-3 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+              {menu.heading}
             </h2>
-            <p className="mx-auto mt-4 max-w-xl opacity-70">
-              Everything is made in-house daily. Ask us about allergens — we
-              know every ingredient in the kitchen.
-            </p>
+            <p className="mt-5 leading-relaxed opacity-70">{menu.intro}</p>
           </div>
         </Reveal>
 
-        {/* Dietary legend */}
         <Reveal delay={80}>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
-            {siteConfig.dietaryLegend.map((l) => (
-              <span
-                key={l.tag}
-                className="inline-flex items-center gap-1.5 text-xs opacity-70"
+          <div
+            className="mt-9 flex flex-wrap justify-center gap-2"
+            role="tablist"
+            aria-label="Menu categories"
+          >
+            {filters.map((category) => (
+              <button
+                key={category.id}
+                type="button"
+                onClick={() => setActiveCategory(category.id)}
+                aria-pressed={activeCategory === category.id}
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                  activeCategory === category.id
+                    ? "border-[var(--brand-primary)] bg-[var(--brand-primary)] text-white shadow-lg shadow-red-900/15"
+                    : "border-current/15 bg-white/50 hover:border-[var(--brand-primary)] hover:text-[var(--brand-primary)] dark:bg-white/5"
+                }`}
               >
+                {category.label}
+              </button>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs opacity-70">
+            {dietaryLegend.map((legend) => (
+              <span key={legend.tag} className="inline-flex items-center gap-1.5">
                 <span
-                  className={`rounded px-1.5 py-0.5 text-[10px] font-bold uppercase ${
-                    TAG_STYLES[l.tag] ?? ""
-                  }`}
+                  className={`rounded px-1.5 py-0.5 text-[10px] font-bold uppercase ${TAG_STYLES[legend.tag]}`}
                 >
-                  {l.tag}
+                  {legend.tag}
                 </span>
-                {l.label}
+                {legend.label}
               </span>
             ))}
           </div>
         </Reveal>
 
-        <div className="mt-14 space-y-14">
-          {siteConfig.menu.map((section, si) => (
-            <Reveal key={section.section} delay={si * 60}>
-              <div>
-                <div className="flex items-baseline justify-between gap-4 border-b border-current/15 pb-3">
-                  <h3 className="font-display text-2xl font-bold tracking-tight">
-                    {section.section}
-                  </h3>
-                  {"note" in section && section.note ? (
-                    <p className="text-right text-xs italic opacity-60">
-                      {section.note}
-                    </p>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((item, index) => (
+            <Reveal
+              key={`${activeCategory}-${item.name}`}
+              delay={Math.min(index * 55, 330)}
+            >
+              <article className="menu-card group h-full overflow-hidden rounded-2xl border border-black/7 bg-white shadow-sm dark:border-white/10 dark:bg-char-900">
+                <div className="relative aspect-[4/3] overflow-hidden bg-char-900">
+                  <RestaurantImage
+                    src={item.image}
+                    alt={item.imageAlt}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute left-3 top-3 rounded-full bg-char-950/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[.12em] text-white backdrop-blur">
+                    {item.category}
+                  </span>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="font-display text-xl font-bold leading-tight">
+                      {item.name}
+                    </h3>
+                    <span className="shrink-0 font-display text-lg font-bold text-[var(--brand-primary)]">
+                      {formatPrice(item.price)}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed opacity-70">
+                    {item.description}
+                  </p>
+                  {item.tags?.length ? (
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className={`rounded px-2 py-1 text-[10px] font-bold uppercase tracking-wide ${TAG_STYLES[tag]}`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   ) : null}
                 </div>
-
-                <ul className="mt-6 space-y-5">
-                  {section.items.map((item) => (
-                    <li key={item.name}>
-                      <div className="flex items-baseline">
-                        <h4 className="font-semibold">{item.name}</h4>
-                        <span className="leader" aria-hidden="true" />
-                        <span className="font-display font-bold tabular-nums">
-                          ${item.price}
-                        </span>
-                      </div>
-                      <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
-                        <p className="text-sm opacity-65">{item.description}</p>
-                        {"tags" in item && item.tags
-                          ? item.tags.map((t) => (
-                              <span
-                                key={t}
-                                className={`rounded px-1.5 py-0.5 text-[10px] font-bold uppercase ${
-                                  TAG_STYLES[t] ?? "bg-black/5 dark:bg-white/10"
-                                }`}
-                              >
-                                {t}
-                              </span>
-                            ))
-                          : null}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </article>
             </Reveal>
           ))}
         </div>
 
-        {siteConfig.takeout.enabled && (
+        <p className="mx-auto mt-8 max-w-xl text-center text-sm opacity-60">
+          {menu.allergenNote}
+        </p>
+
+        {takeout.enabled && (
           <Reveal>
-            <div className="mt-16 rounded-2xl border border-current/10 bg-white/60 p-8 text-center backdrop-blur dark:bg-white/5">
-              <h3 className="font-display text-xl font-bold">
-                Rather eat at home?
+            <div className="mt-14 rounded-2xl border border-current/10 bg-white/55 p-8 text-center dark:bg-white/5">
+              <h3 className="font-display text-2xl font-bold">
+                Bringing the table home?
               </h3>
               <p className="mx-auto mt-2 max-w-md text-sm opacity-70">
-                {siteConfig.takeout.note}
+                {takeout.note}
               </p>
               <a
-                href={siteConfig.takeout.href}
-                className="mt-5 inline-flex items-center justify-center rounded-full bg-ember-500 px-7 py-3.5 font-semibold text-white transition-colors hover:bg-ember-600"
+                href={takeout.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex rounded-full bg-[var(--brand-primary)] px-7 py-3.5 font-semibold text-white transition hover:brightness-110"
               >
-                {siteConfig.takeout.label}
+                {takeout.label}
               </a>
             </div>
           </Reveal>

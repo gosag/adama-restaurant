@@ -1,22 +1,22 @@
 import Logo from "@/components/Logo";
-import { siteConfig, formatHours } from "@/config/site";
+import { restaurantConfig, formatHours } from "@/data/restaurant.config";
 
 export default function Footer() {
-  const { contact, hours } = siteConfig;
+  const { contact, hours, social, footer, name, description } = restaurantConfig;
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-char-900 px-5 py-14 text-ember-50">
+    <footer className="bg-[var(--brand-dark)] px-5 py-14 text-[var(--brand-cream)]">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <Logo />
             <p className="mt-5 max-w-sm text-sm leading-relaxed opacity-65">
-              {siteConfig.description}
+              {description}
             </p>
-            <div className="mt-5 flex gap-3">
+            <div className="mt-5 flex flex-wrap gap-3">
               <a
-                href={siteConfig.social.instagram}
+                href={social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm opacity-70 underline-offset-4 hover:underline hover:opacity-100"
@@ -24,12 +24,20 @@ export default function Footer() {
                 Instagram
               </a>
               <a
-                href={siteConfig.social.facebook}
+                href={social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm opacity-70 underline-offset-4 hover:underline hover:opacity-100"
               >
                 Facebook
+              </a>
+              <a
+                href={contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm opacity-70 underline-offset-4 hover:underline hover:opacity-100"
+              >
+                WhatsApp
               </a>
             </div>
           </div>
@@ -57,8 +65,8 @@ export default function Footer() {
             <address className="mt-4 text-sm not-italic leading-relaxed opacity-70">
               {contact.address.street}
               <br />
-              {contact.address.city}, {contact.address.region}{" "}
-              {contact.address.postalCode}
+              {contact.address.city}
+              {contact.address.postalCode ? `, ${contact.address.postalCode}` : ""}
             </address>
             <a
               href={`tel:${contact.phoneHref}`}
@@ -77,19 +85,9 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-xs opacity-55 sm:flex-row">
           <span>
-            © {year} {siteConfig.name}. All rights reserved.
+            © {year} {name}. All rights reserved.
           </span>
-          <span>
-            {siteConfig.footerNote}{" "}
-            <a
-              href={siteConfig.footerCredit.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-2"
-            >
-              {siteConfig.footerCredit.label}
-            </a>
-          </span>
+          <span>{footer.note}</span>
         </div>
       </div>
     </footer>

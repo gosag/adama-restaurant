@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { siteConfig, formatHours } from "@/config/site";
+import { restaurantConfig, formatHours } from "@/data/restaurant.config";
 
 /**
  * IMPORTANT: this template is a static export, so anything computed on the
  * server is frozen at BUILD time. "Are you open right now?" has to run in the
  * browser or it would be permanently stale. Both exports below are client-side.
  *
- * Note the hours array in config/site.ts is Monday-first, while JavaScript's
+ * Note the hours array in restaurant.config.ts is Monday-first, while JavaScript's
  * getDay() is Sunday-first — todayIndex() bridges that.
  */
 function todayIndex(d: Date): number {
@@ -17,7 +17,7 @@ function todayIndex(d: Date): number {
 }
 
 function isOpenNow(d: Date): boolean {
-  const entry = siteConfig.hours[todayIndex(d)];
+  const entry = restaurantConfig.hours[todayIndex(d)];
   if (!entry || entry.closed) return false;
 
   const [oh, om] = entry.open.split(":").map(Number);
@@ -67,7 +67,7 @@ export function TodayHours() {
 
   useEffect(() => {
     const d = new Date();
-    setText(formatHours(siteConfig.hours[todayIndex(d)]));
+    setText(formatHours(restaurantConfig.hours[todayIndex(d)]));
   }, []);
 
   return <span suppressHydrationWarning>{text || "See hours below"}</span>;

@@ -1,21 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { siteConfig } from "@/config/site";
+import { restaurantConfig } from "@/data/restaurant.config";
 import Reveal from "@/components/Reveal";
 
 /**
- * Reservation form.
+ * Reservation request form.
  *
- * By default (`action: "#"` in config) this shows an inline confirmation so the
- * template works out of the box with no backend. Point `reservations.action` at
- * OpenTable / Resy / SevenRooms / Formspree and it posts there instead.
+ * With `reservations.action === "#"`, submissions stay on-page and point guests
+ * to phone/WhatsApp confirmation. Point `action` at a booking provider or form
+ * endpoint when a real backend is available.
  */
 export default function Reservations() {
-  const { reservations, contact } = siteConfig;
+  const { reservations, contact } = restaurantConfig;
   const [sent, setSent] = useState(false);
 
-  const usesBackend = reservations.action && reservations.action !== "#";
+  const usesBackend = Boolean(reservations.action && reservations.action !== "#");
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     if (!usesBackend) {
@@ -24,7 +24,6 @@ export default function Reservations() {
     }
   }
 
-  // Today, in yyyy-mm-dd, so the date picker cannot select the past.
   const today = new Date().toISOString().split("T")[0];
 
   return (
@@ -32,25 +31,40 @@ export default function Reservations() {
       <div className="mx-auto grid max-w-6xl items-start gap-14 px-5 lg:grid-cols-2">
         <Reveal>
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ember-600 dark:text-ember-400">
-              Reservations
-            </span>
+            <span className="section-kicker">{reservations.eyebrow}</span>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
               {reservations.heading}
             </h2>
-            <p className="mt-5 leading-relaxed opacity-75">
-              {reservations.body}
-            </p>
+            <p className="mt-5 leading-relaxed opacity-75">{reservations.body}</p>
 
-            <div className="mt-8 rounded-2xl border border-current/10 p-6">
-              <p className="text-sm font-semibold">
-                {reservations.largePartyNote}
-              </p>
+            <div className="mt-8 rounded-2xl border border-current/10 bg-[var(--brand-cream)]/60 p-6 dark:bg-white/5">
+              <p className="text-sm font-semibold">{reservations.largePartyNote}</p>
               <a
                 href={`tel:${contact.phoneHref}`}
-                className="mt-2 inline-block font-display text-2xl font-bold text-ember-500 hover:underline"
+                className="mt-2 inline-block font-display text-2xl font-bold text-[var(--brand-primary)] hover:underline"
               >
                 {contact.phone}
+              </a>
+              <a
+                href={contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-olive)] hover:underline"
+              >
+                Message on WhatsApp
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg>
               </a>
             </div>
           </div>
@@ -58,8 +72,8 @@ export default function Reservations() {
 
         <Reveal delay={100}>
           {sent ? (
-            <div className="rounded-2xl border border-emerald-500/30 bg-emerald-50 p-8 text-center dark:bg-emerald-500/10">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-white">
+            <div className="rounded-2xl border border-[var(--brand-accent)]/35 bg-[var(--brand-cream)] p-8 text-center dark:bg-white/5">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--brand-primary)] text-white">
                 <svg
                   width="22"
                   height="22"
@@ -75,20 +89,29 @@ export default function Reservations() {
                 </svg>
               </div>
               <h3 className="mt-5 font-display text-xl font-bold">
-                Request received
+                {reservations.confirmationHeading}
               </h3>
-              <p className="mt-2 text-sm opacity-75">
-                This is the built-in demo confirmation. Connect{" "}
-                <code className="rounded bg-black/5 px-1.5 py-0.5 text-xs dark:bg-white/10">
-                  reservations.action
-                </code>{" "}
-                in <code className="text-xs">config/site.ts</code> to your
-                booking provider to take real bookings.
-              </p>
+              <p className="mt-2 text-sm opacity-75">{reservations.confirmationBody}</p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+                <a
+                  href={contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-[var(--brand-primary)] px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
+                >
+                  Confirm on WhatsApp
+                </a>
+                <a
+                  href={`tel:${contact.phoneHref}`}
+                  className="inline-flex items-center justify-center rounded-full border border-current/15 px-6 py-3 text-sm font-semibold transition hover:bg-black/5 dark:hover:bg-white/10"
+                >
+                  Call {contact.phone}
+                </a>
+              </div>
               <button
                 type="button"
                 onClick={() => setSent(false)}
-                className="mt-6 text-sm font-semibold text-ember-600 hover:underline dark:text-ember-400"
+                className="mt-6 text-sm font-semibold text-[var(--brand-primary)] hover:underline"
               >
                 Make another request
               </button>
@@ -98,7 +121,7 @@ export default function Reservations() {
               action={usesBackend ? reservations.action : undefined}
               method={usesBackend ? "POST" : undefined}
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-current/10 p-7"
+              className="rounded-2xl border border-current/10 bg-white/70 p-7 shadow-sm dark:bg-white/5"
             >
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Name" htmlFor="name">
@@ -143,14 +166,12 @@ export default function Reservations() {
               </div>
 
               <fieldset className="mt-5">
-                <legend className="mb-2 block text-sm font-medium">
-                  Party size
-                </legend>
+                <legend className="mb-2 block text-sm font-medium">Party size</legend>
                 <div className="flex flex-wrap gap-2">
                   {reservations.partySizes.map((size, i) => (
                     <label
                       key={size}
-                      className="cursor-pointer rounded-full border border-current/15 px-4 py-2 text-sm font-medium transition-colors has-[:checked]:border-ember-500 has-[:checked]:bg-ember-500 has-[:checked]:text-white"
+                      className="cursor-pointer rounded-full border border-current/15 px-4 py-2 text-sm font-medium transition-colors has-[:checked]:border-[var(--brand-primary)] has-[:checked]:bg-[var(--brand-primary)] has-[:checked]:text-white"
                     >
                       <input
                         type="radio"
@@ -179,12 +200,13 @@ export default function Reservations() {
 
               <button
                 type="submit"
-                className="mt-6 w-full rounded-full bg-ember-500 px-6 py-4 font-semibold text-white transition-colors hover:bg-ember-600"
+                className="mt-6 w-full rounded-full bg-[var(--brand-primary)] px-6 py-4 font-semibold text-white transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--brand-accent)] focus:ring-offset-2"
               >
-                Request a table
+                {reservations.submitLabel}
               </button>
               <p className="mt-3 text-center text-xs opacity-55">
-                We&rsquo;ll confirm by phone or text within a couple of hours.
+                We&rsquo;ll confirm by phone or WhatsApp — this form does not book a table
+                automatically.
               </p>
             </form>
           )}

@@ -34,9 +34,9 @@
     radial-gradient(at 30% 92%, rgba(69, 26, 3, 0.5) 0px, transparent 60%);
 }
 
-/* Warm paper texture for the menu block, drawn with gradients only. */
+/* Warm paper texture for the menu block. */
 .paper {
-  background-color: var(--color-ember-50);
+  background-color: color-mix(in srgb, var(--brand-cream, #fbf5e9) 92%, white);
   background-image:
     radial-gradient(at 10% 0%, rgba(242, 205, 176, 0.5) 0px, transparent 50%),
     radial-gradient(at 90% 100%, rgba(249, 232, 218, 0.7) 0px, transparent 55%);
@@ -125,4 +125,56 @@ html {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* Ethiopian-demo helpers driven by brand CSS variables from restaurant.config */
+.section-kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+}
+
+.dark .section-kicker {
+  color: var(--brand-accent);
+}
+
+.hero-photo {
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.45s ease;
+}
+
+.image-fallback {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(at 20% 20%, color-mix(in srgb, var(--brand-accent) 45%, transparent), transparent 50%),
+    radial-gradient(at 80% 80%, color-mix(in srgb, var(--brand-primary) 40%, transparent), transparent 55%),
+    linear-gradient(135deg, var(--brand-dark), color-mix(in srgb, var(--brand-primary) 55%, #1a100c));
+  color: var(--brand-cream);
+}
+
+.image-fallback span {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.menu-card {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(38, 23, 18, 0.12);
+}
+
+.dark .menu-card:hover {
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
 }

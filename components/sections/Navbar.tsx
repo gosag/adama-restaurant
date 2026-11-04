@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Logo from "@/components/Logo";
 import ThemeToggle from "@/components/ThemeToggle";
-import { siteConfig } from "@/config/site";
+import { restaurantConfig } from "@/data/restaurant.config";
 
 const LINKS = [
   { href: "#menu", label: "Menu" },
@@ -40,7 +40,7 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <a href="#top" aria-label={`${siteConfig.name} — home`}>
+        <a href="#top" aria-label={`${restaurantConfig.name} — home`}>
           <Logo />
         </a>
 
@@ -58,15 +58,15 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2.5">
           <a
-            href={`tel:${siteConfig.contact.phoneHref}`}
+            href={`tel:${restaurantConfig.contact.phoneHref}`}
             className="hidden text-sm font-semibold lg:inline"
           >
-            {siteConfig.contact.phone}
+            {restaurantConfig.contact.phone}
           </a>
           <ThemeToggle />
           <a
             href="#reserve"
-            className="hidden rounded-full bg-ember-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ember-600 sm:inline-block"
+            className="hidden rounded-full bg-[var(--brand-primary)] px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 sm:inline-block"
           >
             Reserve
           </a>
@@ -113,15 +113,15 @@ export default function Navbar() {
             <a
               href="#reserve"
               onClick={() => setOpen(false)}
-              className="rounded-full bg-ember-500 px-5 py-3 text-center text-sm font-semibold text-white"
+              className="rounded-full bg-[var(--brand-primary)] px-5 py-3 text-center text-sm font-semibold text-white"
             >
               Reserve a table
             </a>
             <a
-              href={`tel:${siteConfig.contact.phoneHref}`}
+              href={`tel:${restaurantConfig.contact.phoneHref}`}
               className="rounded-full border border-black/10 px-5 py-3 text-center text-sm font-semibold dark:border-white/15"
             >
-              Call {siteConfig.contact.phone}
+              Call {restaurantConfig.contact.phone}
             </a>
           </div>
         </div>

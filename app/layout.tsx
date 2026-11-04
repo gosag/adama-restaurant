@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { siteConfig, restaurantSchema } from "@/config/site";
+import { restaurantConfig, restaurantSchema } from "@/data/restaurant.config";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(restaurantConfig.url),
   title: {
-    default: siteConfig.title,
-    template: `%s — ${siteConfig.name}`,
+    default: restaurantConfig.title,
+    template: `%s — ${restaurantConfig.name}`,
   },
-  description: siteConfig.description,
+  description: restaurantConfig.description,
   keywords: [
     "restaurant website template",
     "restaurant template",
@@ -20,15 +20,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Pixel & Oak", url: "https://pixelandoak.com" }],
   openGraph: {
     type: "website",
-    url: siteConfig.url,
-    title: siteConfig.title,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
+    url: restaurantConfig.url,
+    title: restaurantConfig.title,
+    description: restaurantConfig.description,
+    siteName: restaurantConfig.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.title,
-    description: siteConfig.description,
+    title: restaurantConfig.title,
+    description: restaurantConfig.description,
   },
 };
 
@@ -62,7 +62,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-white font-sans text-char-900 antialiased dark:bg-char-950 dark:text-ember-50">
+      <body
+        className="bg-white font-sans text-char-900 antialiased dark:bg-char-950 dark:text-ember-50"
+        style={{
+          "--brand-primary": restaurantConfig.brand.primary,
+          "--brand-accent": restaurantConfig.brand.accent,
+          "--brand-dark": restaurantConfig.brand.dark,
+          "--brand-cream": restaurantConfig.brand.cream,
+          "--brand-olive": restaurantConfig.brand.olive,
+        } as React.CSSProperties}
+      >
         {children}
       </body>
     </html>

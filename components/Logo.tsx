@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site";
+import { restaurantConfig } from "@/data/restaurant.config";
 
 /**
  * Wordmark + mark. Pure CSS/SVG — no image asset to replace.
@@ -26,10 +26,10 @@ export default function Logo({ className = "" }: { className?: string }) {
       </span>
       <span className="leading-tight">
         <span className="block font-display text-lg font-bold tracking-tight">
-          {siteConfig.name}
+          {restaurantConfig.name}
         </span>
         <span className="block text-[11px] uppercase tracking-[0.16em] opacity-60">
-          {siteConfig.tagline}
+          {restaurantConfig.tagline}
         </span>
       </span>
     </span>

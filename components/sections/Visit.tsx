@@ -1,4 +1,4 @@
-import { siteConfig, formatHours } from "@/config/site";
+import { restaurantConfig, formatHours } from "@/data/restaurant.config";
 import Reveal from "@/components/Reveal";
 
 /**
@@ -6,17 +6,15 @@ import Reveal from "@/components/Reveal";
  * Kept high on the page and never hidden behind a "Contact" click.
  */
 export default function Visit() {
-  const { contact, hours } = siteConfig;
+  const { contact, hours, visit } = restaurantConfig;
 
   return (
     <section id="visit" className="border-y border-current/10 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-ember-600 dark:text-ember-400">
-            Visit
-          </span>
+          <span className="section-kicker">{visit.eyebrow}</span>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            Where to find us
+            {visit.heading}
           </h2>
         </Reveal>
 
@@ -58,9 +56,9 @@ export default function Visit() {
                 href={contact.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ember-600 hover:underline dark:text-ember-400"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--brand-primary)] hover:underline"
               >
-                Get directions
+                {visit.directionsLabel}
                 <svg
                   width="14"
                   height="14"
@@ -89,6 +87,14 @@ export default function Visit() {
                   {contact.phone}
                 </a>
                 <a
+                  href={contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block font-semibold text-[var(--brand-olive)] hover:underline"
+                >
+                  WhatsApp
+                </a>
+                <a
                   href={`mailto:${contact.email}`}
                   className="block opacity-75 hover:underline"
                 >
@@ -97,7 +103,7 @@ export default function Visit() {
               </div>
               <div className="mt-6 flex gap-3">
                 <a
-                  href={siteConfig.social.instagram}
+                  href={restaurantConfig.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -118,7 +124,7 @@ export default function Visit() {
                   </svg>
                 </a>
                 <a
-                  href={siteConfig.social.facebook}
+                  href={restaurantConfig.social.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
