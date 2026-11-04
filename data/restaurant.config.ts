@@ -78,9 +78,9 @@ export interface RestaurantConfig {
 
 export const restaurantConfig: RestaurantConfig = {
   // Change identity, brand colours and metadata here for a new client.
-  name: "Mesob House",
-  tagline: "Ethiopian kitchen & coffee",
-  title: "Mesob House — Ethiopian Kitchen & Coffee in Addis Ababa",
+  name: "Restaurant Demo",
+  tagline: "Ethiopian Restaurant",
+  title: "Adama Restaurant — Ethiopian Kitchen & Coffee in Addis Ababa",
   description: "A warm, contemporary Ethiopian dining experience centred on shared platters, slow-cooked wots and ceremonial buna.",
   url: "https://mesobhouse.example.com",
   cuisine: "Ethiopian",
@@ -94,15 +94,15 @@ export const restaurantConfig: RestaurantConfig = {
     olive: "#687143",
   },
   contact: {
-    phone: "+251 91 234 5678",
-    phoneHref: "+251912345678",
+    phone: "+251 90 000 0000",
+    phoneHref: "+25190000000",
     whatsappNumber: "251912345678",
-    whatsappUrl: "https://wa.me/251912345678",
-    email: "hello@mesobhouse.example.com",
+    whatsappUrl: "https://wa.me/251952742250",
+    email: "hello@example.com",
     address: {
-      street: "Bole Road, near Edna Mall",
-      city: "Addis Ababa",
-      region: "Addis Ababa",
+      street: "",
+      city: "Adama",
+      region: "Oromia",
       postalCode: "",
       country: "ET",
     },
