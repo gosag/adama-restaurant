@@ -143,33 +143,35 @@ export const restaurantConfig: RestaurantConfig = {
     categories: [
       {
         id: "meat", label: "Meat dishes", note: "Deeply spiced, slowly prepared.", items: [
-          { name: "Doro Wot", description: "Our signature berbere chicken stew with a seasoned egg, served with fresh injera.", price: 650, image: "/images/doro-wot.jpg", imageAlt: "Ethiopian chicken stew with injera", tags: ["signature", "popular"] },
-          { name: "Awaze Tibs", description: "Tender sautéed beef in awaze, rosemary and green chilli, finished over a high flame.", price: 720, image: "/images/tibs.jpg", imageAlt: "Ethiopian beef tibs on injera", tags: ["popular"] },
-          { name: "Kitfo", description: "Hand-minced seasoned beef with mitmita and niter kibbeh; ask for it leb leb or fully cooked.", price: 760, image: "/images/platter-2.jpg", imageAlt: "Ethiopian kitfo served with injera", tags: ["signature"] },
-          { name: "Siga Wot", description: "Slow-braised beef in a glossy, aromatic berbere sauce with a generous side of injera.", price: 680, image: "/images/doro-wot.jpg", imageAlt: "Spiced Ethiopian beef stew", tags: ["gf"] },
+          { name: "Doro Wot", description: "Our signature berbere chicken stew with a seasoned egg, served with fresh injera.", price: 650, image: "/images/doro-wot.jpg", imageAlt: "Doro wot chicken stew with injera", tags: ["signature", "popular"] },
+          { name: "Awaze Tibs", description: "Tender sautéed beef in awaze, rosemary and green chilli, finished over a high flame.", price: 720, image: "/images/tibs.jpg", imageAlt: "Awaze tibs beef with injera", tags: ["popular"] },
+          { name: "Kitfo", description: "Hand-minced seasoned beef with mitmita and niter kibbeh; ask for it leb leb or fully cooked.", price: 760, image: "/images/kitfo.jpg", imageAlt: "Ethiopian kitfo with ayibe and gomen", tags: ["signature"] },
+          { name: "Siga Wot", description: "Slow-braised beef in a glossy, aromatic berbere sauce with a generous side of injera.", price: 680, image: "/images/menelik-plate.jpg", imageAlt: "Siga wot beef stew on injera", tags: ["gf"] },
         ]
       },
       {
         id: "vegetarian", label: "Vegetarian & fasting", note: "Vibrant plant-led classics.", items: [
-          { name: "Beyaynetu", description: "A colourful shared platter of our vegetarian favourites on soft, tangy injera.", price: 520, image: "/images/beyaynetu.jpg", imageAlt: "Vegetarian Ethiopian platter with injera", tags: ["vg", "popular"] },
-          { name: "Shiro Wot", description: "Silky ground chickpea stew with garlic, onion and a slow bloom of Ethiopian spices.", price: 390, image: "/images/fasting.jpg", imageAlt: "Ethiopian shiro stew with injera", tags: ["vg"] },
-          { name: "Misir Wot", description: "Red lentils simmered in berbere until rich, warming and beautifully fragrant.", price: 360, image: "/images/beyaynetu.jpg", imageAlt: "Ethiopian red lentil stew", tags: ["vg", "gf"] },
-          { name: "Kik Alicha", description: "Gentle split peas with turmeric, ginger and niter kibbeh.", price: 360, image: "/images/fasting.jpg", imageAlt: "Mild Ethiopian split pea stew", tags: ["v", "gf"] },
+          { name: "Beyaynetu", description: "A colourful shared platter of our vegetarian favourites on soft, tangy injera.", price: 520, image: "/images/beyaynetu.jpg", imageAlt: "Vegetarian beyaynetu platter with injera", tags: ["vg", "popular"] },
+          { name: "Shiro Wot", description: "Silky ground chickpea stew with garlic, onion and a slow bloom of Ethiopian spices.", price: 390, image: "/images/shiro.jpg", imageAlt: "Shiro wot with injera", tags: ["vg"] },
+          { name: "Misir Wot", description: "Red lentils simmered in berbere until rich, warming and beautifully fragrant.", price: 360, image: "/images/lentil-stew.jpg", imageAlt: "Misir wot red lentil stew", tags: ["vg", "gf"] },
+          { name: "Kik Alicha", description: "Gentle split peas with turmeric, ginger and niter kibbeh.", price: 360, image: "/images/yellow-stew.jpg", imageAlt: "Kik alicha yellow split pea stew", tags: ["v", "gf"] },
         ]
       },
       {
         id: "traditional", label: "Traditional dishes", note: "A little extra for the table.", items: [
-          { name: "Chechebsa", description: "Torn flatbread folded with spiced butter and berbere, a beloved Ethiopian breakfast.", price: 330, image: "/images/hero-platter.jpg", imageAlt: "Ethiopian breakfast flatbread", tags: ["v", "new"] },
-          { name: "Sambusa", description: "Three crisp pastry parcels filled with warmly spiced lentils and herbs.", price: 240, image: "/images/platter-2.jpg", imageAlt: "Ethiopian lentil sambusa", tags: ["vg"] },
-          { name: "Firfir", description: "Injera ribbons stirred through a richly seasoned tomato and berbere sauce.", price: 350, image: "/images/tibs.jpg", imageAlt: "Ethiopian firfir with spiced sauce", tags: ["v"] },
+          { name: "Chechebsa", description: "Torn flatbread folded with spiced butter and berbere, a beloved Ethiopian breakfast.", price: 330, image: "/images/flatbread.jpg", imageAlt: "Chechebsa spiced flatbread breakfast", tags: ["v", "new"] },
+          { name: "Sambusa", description: "Three crisp pastry parcels filled with warmly spiced lentils and herbs.", price: 240, image: "/images/sambusa.jpg", imageAlt: "Crispy Ethiopian lentil sambusa", tags: ["vg"] },
+          { name: "Firfir", description: "Injera ribbons stirred through a richly seasoned tomato and berbere sauce.", price: 350, image: "/images/restaurant-plate.jpg", imageAlt: "Firfir shredded injera in berbere sauce", tags: ["v"] },
         ]
       },
       {
         id: "drinks", label: "Drinks", note: "From the jebena and beyond.", items: [
-          { name: "Ethiopian Buna", description: "Freshly roasted and brewed Ethiopian coffee, served black from the jebena.", price: 120, image: "/images/coffee.jpg", imageAlt: "Fresh Ethiopian coffee", tags: ["vg", "signature"] },
-          { name: "Macchiato", description: "A short Ethiopian espresso softened with a cloud of milk foam.", price: 110, image: "/images/coffee.jpg", imageAlt: "Ethiopian style macchiato", tags: ["v"] },
-          { name: "Avocado Spris", description: "Layered avocado, mango and papaya juice — cool, silky and sunny.", price: 180, image: "/images/juice.jpg", imageAlt: "Fresh layered fruit juice", tags: ["vg", "gf"] },
-          { name: "Spiced Shai", description: "A fragrant cup of Ethiopian tea with warming whole spices.", price: 90, image: "/images/coffee.jpg", imageAlt: "Ethiopian spiced tea", tags: ["vg"] },
+          { name: "Ethiopian Buna", description: "Freshly roasted and brewed Ethiopian coffee, served black from the jebena.", price: 120, image: "/images/buna.jpg", imageAlt: "Ethiopian buna coffee ceremony", tags: ["vg", "signature"] },
+          { name: "Macchiato", description: "A short Ethiopian espresso softened with a cloud of milk foam.", price: 110, image: "/images/macchiato.jpg", imageAlt: "Macchiato with milk foam", tags: ["v"] },
+          { name: "Avocado Spris", description: "Layered avocado, mango and papaya juice — cool, silky and sunny.", price: 180, image: "/images/spris.jpg", imageAlt: "Layered avocado and fruit spris juice", tags: ["vg", "gf"] },
+          { name: "Spiced Shai", description: "A fragrant cup of Ethiopian tea with warming whole spices.", price: 90, image: "/images/tea.jpg", imageAlt: "Cup of spiced Ethiopian tea", tags: ["vg"] },
+          { name: "Pepsi", description: "Ice-cold Pepsi, the classic soft drink with your meal.", price: 60, image: "/images/pepsi.jpg", imageAlt: "Pepsi soft drink", tags: ["vg", "gf"] },
+          { name: "Ambo", description: "Sparkling Ambo mineral water — crisp, local and refreshing.", price: 50, image: "/images/ambo.jpg", imageAlt: "Ambo sparkling mineral water", tags: ["vg", "gf"] },
         ]
       }
     ]
