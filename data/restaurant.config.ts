@@ -73,17 +73,17 @@ export interface RestaurantConfig {
     confirmationBody: string;
   };
   takeout: { enabled: boolean; label: string; href: string; note: string };
-  footer: { note: string };
+  footer: { note: string; creatorName: string; creatorUrl: string };
 }
 
 export const restaurantConfig: RestaurantConfig = {
   // Change identity, brand colours and metadata here for a new client.
-  name: "Restaurant Demo",
-  tagline: "Ethiopian Restaurant",
-  title: "Adama Restaurant — Ethiopian Kitchen & Coffee in Addis Ababa",
-  description: "A warm, contemporary Ethiopian dining experience centred on shared platters, slow-cooked wots and ceremonial buna.",
-  url: "https://mesobhouse.example.com",
-  cuisine: "Ethiopian",
+  name: "Demo",
+  tagline: "Adama's burger kitchen",
+  title: "Bun & Flame — Smash Burgers, Fries & Shakes in Adama",
+  description: "A laid-back burger kitchen serving juicy smash burgers, loaded fries, cold drinks and thick shakes in the heart of Adama.",
+  url: "https://bunandflame.example.com",
+  cuisine: "Burgers",
   priceRange: "$$",
   currency: "ETB",
   brand: {
@@ -96,7 +96,7 @@ export const restaurantConfig: RestaurantConfig = {
   contact: {
     phone: "+251 90 000 0000",
     phoneHref: "+25190000000",
-    whatsappNumber: "251912345678",
+    whatsappNumber: "251952742250",
     whatsappUrl: "https://wa.me/251952742250",
     email: "hello@example.com",
     address: {
@@ -106,7 +106,7 @@ export const restaurantConfig: RestaurantConfig = {
       postalCode: "",
       country: "ET",
     },
-    mapsUrl: "https://maps.google.com/?q=Bole+Road+Addis+Ababa",
+    mapsUrl: "https://maps.google.com/?q=Adama+Oromia",
   },
   social: { instagram: "https://instagram.com/", facebook: "https://facebook.com/" },
   hours: [
@@ -119,59 +119,50 @@ export const restaurantConfig: RestaurantConfig = {
     { day: "Sunday", closed: false, open: "09:00", close: "22:00" },
   ],
   hero: {
-    eyebrow: "Contemporary Ethiopian dining",
-    headline: "Gather around a table made for sharing.",
-    sub: "Rich, slow-simmered wots, warm injera and the generous spirit of Ethiopian hospitality — served from our mesob to yours.",
-    primaryCta: "Reserve a table",
+    eyebrow: "Adama's burger kitchen",
+    headline: "Big flavour. Fresh buns. Zero fuss.",
+    sub: "Stacked smash burgers, crisp fries and ice-cold drinks made for lunch breaks, late-night cravings and everything in between.",
+    primaryCta: "Book a table",
     secondaryCta: "Explore the menu",
     // Swap this path (or URL) when demoing for a different restaurant.
-    image: "/images/hero-platter.jpg",
-    imageAlt: "Ethiopian food platter with injera and colourful stews",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1800&q=85",
+    imageAlt: "Double cheeseburger with melted cheese and fresh toppings",
     imagePosition: "center center",
     fallbackBackground: "radial-gradient(at 15% 18%, rgba(199,146,62,.55), transparent 48%), radial-gradient(at 86% 75%, rgba(157,49,37,.55), transparent 55%), linear-gradient(135deg, #261712, #492219 56%, #1d1510)",
   },
   highlights: [
-    { label: "Find us", value: "Bole Road\nAddis Ababa" },
+    { label: "Find us", value: "Central Adama\nOromia" },
     { label: "Today", value: "hours" },
-    { label: "Call", value: "+251 91 234 5678" },
+    { label: "Call", value: "+251 90 000 0000" },
   ],
   menu: {
-    eyebrow: "Our table",
-    heading: "The flavours of Ethiopia",
-    intro: "From fragrant wots to bright fasting dishes, every plate is made to be passed, shared and remembered.",
+    eyebrow: "The menu",
+    heading: "Burgers worth getting messy for",
+    intro: "Hand-pressed patties, toasted buns, punchy sauces and sides made fresh to order. Pick your stack, add a side and stay for a shake.",
     allergenNote: "Please tell us about allergies or dietary requirements when ordering.",
     categories: [
       {
-        id: "meat", label: "Meat dishes", note: "Deeply spiced, slowly prepared.", items: [
-          { name: "Doro Wot", description: "Our signature berbere chicken stew with a seasoned egg, served with fresh injera.", price: 650, image: "/images/doro-wot.jpg", imageAlt: "Doro wot chicken stew with injera", tags: ["signature", "popular"] },
-          { name: "Awaze Tibs", description: "Tender sautéed beef in awaze, rosemary and green chilli, finished over a high flame.", price: 720, image: "/images/tibs.jpg", imageAlt: "Awaze tibs beef with injera", tags: ["popular"] },
-          { name: "Kitfo", description: "Hand-minced seasoned beef with mitmita and niter kibbeh; ask for it leb leb or fully cooked.", price: 760, image: "/images/kitfo.jpg", imageAlt: "Ethiopian kitfo with ayibe and gomen", tags: ["signature"] },
-          { name: "Siga Wot", description: "Slow-braised beef in a glossy, aromatic berbere sauce with a generous side of injera.", price: 680, image: "/images/menelik-plate.jpg", imageAlt: "Siga wot beef stew on injera", tags: ["gf"] },
+        id: "burgers", label: "Burgers", note: "The reason you came.", items: [
+          { name: "The Bun & Flame", description: "Double smashed beef patties, American cheese, caramelised onions, pickles and our smoky house sauce.", price: 580, image: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=85", imageAlt: "Double cheeseburger with pickles and caramelised onions", tags: ["signature", "popular"] },
+          { name: "Classic Cheeseburger", description: "A smashed beef patty, melted cheddar, shredded lettuce, tomato, onion and burger sauce in a toasted bun.", price: 450, image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=900&q=85", imageAlt: "Classic cheeseburger with lettuce and tomato", tags: ["popular"] },
+          { name: "Crispy Chicken", description: "Crunchy fried chicken, cool slaw, pickles and hot honey mayo on a soft toasted bun.", price: 520, image: "https://images.unsplash.com/photo-1615297928064-24977384d0e8?auto=format&fit=crop&w=900&q=85", imageAlt: "Crispy fried chicken burger with slaw", tags: ["new"] },
+          { name: "Green Stack", description: "Crispy veggie patty, cheddar, lettuce, tomato, avocado and herb mayo.", price: 480, image: "https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=900&q=85", imageAlt: "Vegetarian burger with fresh green toppings", tags: ["v"] },
         ]
       },
       {
-        id: "vegetarian", label: "Vegetarian & fasting", note: "Vibrant plant-led classics.", items: [
-          { name: "Beyaynetu", description: "A colourful shared platter of our vegetarian favourites on soft, tangy injera.", price: 520, image: "/images/beyaynetu.jpg", imageAlt: "Vegetarian beyaynetu platter with injera", tags: ["vg", "popular"] },
-          { name: "Shiro Wot", description: "Silky ground chickpea stew with garlic, onion and a slow bloom of Ethiopian spices.", price: 390, image: "/images/shiro.jpg", imageAlt: "Shiro wot with injera", tags: ["vg"] },
-          { name: "Misir Wot", description: "Red lentils simmered in berbere until rich, warming and beautifully fragrant.", price: 360, image: "/images/lentil-stew.jpg", imageAlt: "Misir wot red lentil stew", tags: ["vg", "gf"] },
-          { name: "Kik Alicha", description: "Gentle split peas with turmeric, ginger and niter kibbeh.", price: 360, image: "/images/yellow-stew.jpg", imageAlt: "Kik alicha yellow split pea stew", tags: ["v", "gf"] },
+        id: "sides", label: "Sides", note: "Make it a proper meal.", items: [
+          { name: "House Fries", description: "Golden, seasoned fries with a crisp edge and fluffy centre.", price: 180, image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=85", imageAlt: "Golden seasoned fries in a basket", tags: ["v", "vg"] },
+          { name: "Loaded Flame Fries", description: "Crisp fries covered with cheese sauce, chopped beef, jalapeños and smoky sauce.", price: 320, image: "https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&fit=crop&w=900&q=85", imageAlt: "Loaded fries with cheese and toppings", tags: ["popular"] },
+          { name: "Chicken Bites", description: "Golden, tender chicken bites served with your choice of house dip.", price: 300, image: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=900&q=85", imageAlt: "Crispy chicken bites with dipping sauce", tags: [] },
         ]
       },
       {
-        id: "traditional", label: "Traditional dishes", note: "A little extra for the table.", items: [
-          { name: "Chechebsa", description: "Torn flatbread folded with spiced butter and berbere, a beloved Ethiopian breakfast.", price: 330, image: "/images/flatbread.jpg", imageAlt: "Chechebsa spiced flatbread breakfast", tags: ["v", "new"] },
-          { name: "Sambusa", description: "Three crisp pastry parcels filled with warmly spiced lentils and herbs.", price: 240, image: "/images/sambusa.jpg", imageAlt: "Crispy Ethiopian lentil sambusa", tags: ["vg"] },
-          { name: "Firfir", description: "Injera ribbons stirred through a richly seasoned tomato and berbere sauce.", price: 350, image: "/images/restaurant-plate.jpg", imageAlt: "Firfir shredded injera in berbere sauce", tags: ["v"] },
-        ]
-      },
-      {
-        id: "drinks", label: "Drinks", note: "From the jebena and beyond.", items: [
-          { name: "Ethiopian Buna", description: "Freshly roasted and brewed Ethiopian coffee, served black from the jebena.", price: 120, image: "/images/buna.jpg", imageAlt: "Ethiopian buna coffee ceremony", tags: ["vg", "signature"] },
-          { name: "Macchiato", description: "A short Ethiopian espresso softened with a cloud of milk foam.", price: 110, image: "/images/macchiato.jpg", imageAlt: "Macchiato with milk foam", tags: ["v"] },
-          { name: "Avocado Spris", description: "Layered avocado, mango and papaya juice — cool, silky and sunny.", price: 180, image: "/images/spris.jpg", imageAlt: "Layered avocado and fruit spris juice", tags: ["vg", "gf"] },
-          { name: "Spiced Shai", description: "A fragrant cup of Ethiopian tea with warming whole spices.", price: 90, image: "/images/tea.jpg", imageAlt: "Cup of spiced Ethiopian tea", tags: ["vg"] },
-          { name: "Pepsi", description: "Ice-cold Pepsi, the classic soft drink with your meal.", price: 60, image: "/images/pepsi.jpg", imageAlt: "Pepsi soft drink", tags: ["vg", "gf"] },
-          { name: "Ambo", description: "Sparkling Ambo mineral water — crisp, local and refreshing.", price: 50, image: "/images/ambo.jpg", imageAlt: "Ambo sparkling mineral water", tags: ["vg", "gf"] },
+        id: "drinks", label: "Drinks", note: "Cold, fizzy and made for burgers.", items: [
+          { name: "Vanilla Shake", description: "Thick vanilla ice cream blended smooth and finished with whipped cream.", price: 260, image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=85", imageAlt: "Vanilla milkshake with whipped cream", tags: ["v", "popular"] },
+          { name: "Chocolate Shake", description: "Rich chocolate, cold milk and a little extra sweetness for the ride home.", price: 280, image: "https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=900&q=85", imageAlt: "Chocolate milkshake in a tall glass", tags: ["v"] },
+          { name: "Fresh Lemonade", description: "Bright, cold and made with fresh lemon, a touch of sugar and plenty of ice.", price: 160, image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=900&q=85", imageAlt: "Fresh lemonade with lemon slices and ice", tags: ["vg", "gf"] },
+          { name: "Pepsi", description: "Ice-cold pepsi served with plenty of fizz.", price: 90, image: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=900&q=85", imageAlt: "Cold cola with ice", tags: ["vg", "gf"] },
+          { name: "Sparkling Water", description: "Crisp, cold sparkling water to cut through every bite.", price: 70, image: "https://images.unsplash.com/photo-1559839914-17aae19cec71?auto=format&fit=crop&w=900&q=85", imageAlt: "Bottle of sparkling water", tags: ["vg", "gf"] },
         ]
       }
     ]
@@ -186,25 +177,29 @@ export const restaurantConfig: RestaurantConfig = {
   ],
   about: {
     eyebrow: "Our story",
-    heading: "A generous table, rooted in tradition.",
+    heading: "A better burger break starts here.",
     body: [
-      "At Mesob House, a meal begins with injera and an invitation to share. Our kitchen honours the depth of Ethiopia’s regional cooking while giving every gathering a relaxed, contemporary setting.",
-      "We toast spices slowly, simmer our wots patiently and brew coffee with the same care we give every guest. Come for a platter; stay for the conversation.",
+      "Bun & Flame is a neighbourhood burger kitchen built around the things that matter: properly seasoned patties, toasted buns, crisp toppings and sauces with a little attitude.",
+      "We cook to order, keep the room relaxed and make every burger generous enough to satisfy. Come hungry, bring your people and stay for something sweet.",
     ],
     gallery: [
-      { image: "/images/hero-platter.jpg", alt: "Ethiopian sharing platter" },
-      { image: "/images/coffee.jpg", alt: "Freshly brewed Ethiopian coffee" },
-      { image: "/images/beyaynetu.jpg", alt: "Colourful Ethiopian stews" },
-      { image: "/images/doro-wot.jpg", alt: "Doro wot served with injera" },
+      { image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85", alt: "Double cheeseburger with melted cheese" },
+      { image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=85", alt: "Fresh golden fries" },
+      { image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=85", alt: "Vanilla milkshake with whipped cream" },
+      { image: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=900&q=85", alt: "Classic cheeseburger with fresh toppings" },
     ],
   },
-  visit: { eyebrow: "Visit", heading: "Come gather with us", directionsLabel: "Get directions" },
+  visit: { eyebrow: "Visit", heading: "Find your new favourite burger spot", directionsLabel: "Get directions" },
   reservations: {
-    eyebrow: "Reservations", heading: "Save your place at the mesob", body: "Send us a reservation request and our team will confirm availability by phone or WhatsApp. For larger gatherings, please contact us directly.",
+    eyebrow: "Reservations", heading: "Save a table for your crew", body: "Send us a reservation request and our team will confirm availability by phone or WhatsApp. For larger groups, please contact us directly.",
     action: "#", partySizes: ["1", "2", "3", "4", "5", "6+"], largePartyNote: "For parties of 6 or more, please call or message us.", submitLabel: "Send reservation request", confirmationHeading: "Your request is ready to confirm", confirmationBody: "This demo does not make a booking automatically. Please contact us by WhatsApp or phone and our team will confirm your table.",
   },
   takeout: { enabled: true, label: "Order by WhatsApp", href: "https://wa.me/251912345678", note: "Message us for today’s availability and collection details." },
-  footer: { note: "A reusable Ethiopian restaurant demo. Replace the sample details in restaurant.config.ts for your next client." },
+  footer: {
+    note: "Demo website — burgers, fries and good times in Adama.",
+    creatorName: "Gosag Girma",
+    creatorUrl: "https://gosagirma.me",
+  },
 };
 
 export type SiteConfig = RestaurantConfig;

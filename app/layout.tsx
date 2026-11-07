@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "Tailwind CSS template",
     "free restaurant website",
   ],
-  authors: [{ name: "Pixel & Oak", url: "https://pixelandoak.com" }],
+  authors: [{ name: "Gosag Girma", url: "https://gosagirma.me" }],
   openGraph: {
     type: "website",
     url: restaurantConfig.url,
