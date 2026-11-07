@@ -78,7 +78,7 @@ export interface RestaurantConfig {
 
 export const restaurantConfig: RestaurantConfig = {
   // Change identity, brand colours and metadata here for a new client.
-  name: "One Burger— Bun & Flame",
+  name: "Demo Web— Bun & Flame",
   tagline: "A modern Burger Kitchen in Adama",
   title: "Burger — Smash Burgers, Fries & Shakes in Adama",
   description: "A laid-back burger kitchen serving juicy smash burgers, loaded fries, cold drinks and thick shakes in the heart of Adama.",
@@ -158,10 +158,11 @@ export const restaurantConfig: RestaurantConfig = {
       },
       {
         id: "drinks", label: "Drinks", note: "Cold, fizzy and made for burgers.", items: [
+          { name: "Macchiato", description: "Rich espresso with a smooth layer of steamed milk.", price: 120, image: "/images/macchiato.jpg", imageAlt: "Macchiato coffee in a cup on a saucer", tags: ["v"] },
           { name: "Vanilla Shake", description: "Thick vanilla ice cream blended smooth and finished with whipped cream.", price: 260, image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=900&q=85", imageAlt: "Vanilla milkshake with whipped cream", tags: ["v", "popular"] },
           { name: "Chocolate Shake", description: "Rich chocolate, cold milk and a little extra sweetness for the ride home.", price: 280, image: "https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=900&q=85", imageAlt: "Chocolate milkshake in a tall glass", tags: ["v"] },
           { name: "Fresh Lemonade", description: "Bright, cold and made with fresh lemon, a touch of sugar and plenty of ice.", price: 160, image: "https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=900&q=85", imageAlt: "Fresh lemonade with lemon slices and ice", tags: ["vg", "gf"] },
-          { name: "Pepsi", description: "Ice-cold pepsi served with plenty of fizz.", price: 90, image: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=900&q=85", imageAlt: "Cold cola with ice", tags: ["vg", "gf"] },
+          { name: "Coca-Cola", description: "Ice-cold Coca-Cola served with plenty of fizz.", price: 90, image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=900&q=85", imageAlt: "Cold Coca-Cola in a glass bottle", tags: ["vg", "gf"] },
           { name: "Sparkling Water", description: "Crisp, cold sparkling water to cut through every bite.", price: 70, image: "https://images.unsplash.com/photo-1559839914-17aae19cec71?auto=format&fit=crop&w=900&q=85", imageAlt: "Bottle of sparkling water", tags: ["vg", "gf"] },
         ]
       }
