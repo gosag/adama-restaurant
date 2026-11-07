@@ -83,8 +83,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-xs opacity-55 sm:flex-row">
-          <span>
+        <div className="footer-bottom mt-12 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-xs sm:flex-row">
+          <span className="footer-copyright">
             © {year} {name}. All rights reserved.
           </span>
           <span className="footer-credit">
