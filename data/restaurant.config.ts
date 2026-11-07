@@ -80,9 +80,9 @@ export const restaurantConfig: RestaurantConfig = {
   // Change identity, brand colours and metadata here for a new client.
   name: "Demo",
   tagline: "Adama's burger kitchen",
-  title: "Bun & Flame — Smash Burgers, Fries & Shakes in Adama",
+  title: "Burger — Smash Burgers, Fries & Shakes in Adama",
   description: "A laid-back burger kitchen serving juicy smash burgers, loaded fries, cold drinks and thick shakes in the heart of Adama.",
-  url: "https://bunandflame.example.com",
+  url: "https://burger.example.com",
   cuisine: "Burgers",
   priceRange: "$$",
   currency: "ETB",
