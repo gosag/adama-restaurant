@@ -87,13 +87,12 @@ export default function Footer() {
           <span>
             © {year} {name}. All rights reserved.
           </span>
-          <span>
+          <span className="footer-credit">
             {footer.note} Made by{" "}
             <a
               href={footer.creatorUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-4 hover:opacity-100"
             >
               {footer.creatorName}
             </a>

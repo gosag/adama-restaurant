@@ -140,6 +140,22 @@ html {
   color: var(--brand-accent);
 }
 
+.footer-credit {
+  color: color-mix(in srgb, var(--brand-cream) 78%, transparent);
+}
+
+.footer-credit a {
+  color: var(--brand-cream);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color 0.15s ease;
+}
+
+.footer-credit a:hover {
+  color: var(--brand-accent);
+}
+
 .hero-photo {
   background-size: cover;
   background-repeat: no-repeat;
