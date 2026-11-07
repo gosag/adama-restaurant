@@ -78,8 +78,8 @@ export interface RestaurantConfig {
 
 export const restaurantConfig: RestaurantConfig = {
   // Change identity, brand colours and metadata here for a new client.
-  name: "Markonal",
-  tagline: "Markonal's burger kitchen",
+  name: "Burger — Bun & Flame",
+  tagline: "A modern burger kitchen",
   title: "Burger — Smash Burgers, Fries & Shakes in Adama",
   description: "A laid-back burger kitchen serving juicy smash burgers, loaded fries, cold drinks and thick shakes in the heart of Adama.",
   url: "https://burger.example.com",
