@@ -12,6 +12,8 @@ const LINKS = [
   { href: "#reserve", label: "Reservations" },
 ];
 
+const LANGUAGES = ["Amh", "Eng", "Oro"];
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -63,6 +65,22 @@ export default function Navbar() {
           >
             {restaurantConfig.contact.phone}
           </a>
+          <div className="flex items-center gap-1" aria-label="Languages">
+            {LANGUAGES.map((language) => (
+              <button
+                key={language}
+                type="button"
+                aria-pressed={language === "Eng"}
+                className={`rounded-full px-2 py-1 text-xs font-semibold transition-colors ${
+                  language === "Eng"
+                    ? "bg-[var(--brand-primary)] text-white"
+                    : "opacity-60 hover:bg-black/5 hover:opacity-100 dark:hover:bg-white/10"
+                }`}
+              >
+                {language}
+              </button>
+            ))}
+          </div>
           <ThemeToggle />
           <a
             href="#reserve"
